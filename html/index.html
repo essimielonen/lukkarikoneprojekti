@@ -1,17 +1,18 @@
 <!doctype html>
 <html lang="">
 <head>
-	
-	<!-- Global site tag (gtag.js) - Google Analytics -->
+
+    	<!-- Global site tag (gtag.js) - Google Analytics -->
 <script async src="https://www.googletagmanager.com/gtag/js?id=UA-138889186-1"></script>
 <script>
   window.dataLayer = window.dataLayer || [];
   function gtag(){dataLayer.push(arguments);}
   gtag('js', new Date());
-
   gtag('config', 'UA-138889186-1');
 </script>
-	
+
+    
+    
     <meta charset="utf-8">
     <meta http-equiv="x-ua-compatible" content="ie=edge">
 		<title>Kysely Lukkarikoneesta</title>
@@ -21,40 +22,97 @@
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
-    <link rel="stylesheet" href="tyyli.css">
+  <link rel="stylesheet" href="tyyli.css">
     <link href="https://fonts.googleapis.com/css?family=Montserrat:900,800" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css?family=Poppins" rel="stylesheet">
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.1/css/all.css" integrity="sha384-50oBUHEmvpQ+1lW4y57PTFmhCaXp0ML5d60M1M7uH2+nqUivzIebhndOJK28anvf" crossorigin="anonymous">
     
-
-
     
     </head>    
 <body>
     <div class="container">
 <h1>Kysely</h1>
 <h2>Haaga-Helian Lukkarikoneesta</h2>
-
+<form>
         <div class="col-lg-6" id="formi"></div>
     
-        
+     <button onclick="laheta()">Lähetä&nbsp;&nbsp;<i class="fas fa-arrow-right"></i></button>
+    </form>
+        </div>    
            <script>
+               
+               
+var tunnukset = [];
 
-var items = [];
-    $.getJSON("https://executeorder66.herokuapp.com/questions", function(data){
+    $.getJSON("https://testidataothu1.herokuapp.com/questions", function(data){
+        var items = [];
+
         $.each(data, function(key, d){
-           items.push(d.title);
-            items.push("<br><textarea id=" + d.id + "></textarea><br>")
+           items.push("<br>" + d.title + "<br>");
+            
+            if (d.type =="avoin") {
+            items.push("<textarea id=" + d.questionId + "></textarea><br>")
+            
+            }
+            
+            if (d.type =="monivalinta") {
+                for (i = 0; i < d.answerOptions.length; i++) { 
+                    items.push("<input type=radio id="+ d.questionId + " name="+d.questionId +" value="+ d.answerOptions[i].value +">  "+d.answerOptions[i].value +"<br>" );
+	 }}
+
+            
+          tunnukset.push(d.questionId);  
         });
          $("#formi").append(items.join(" "));
-    });
+        });
+               
+               function laheta(){
+                   var vastaukset = [];
+                   vastaukset.push("[");
+                   for (i = 0; i < tunnukset.length; i++) {
+                       tyyppi=document.getElementById(tunnukset[i]).type;
+                       if (tyyppi=="textarea") {
+                       vastaus=document.getElementById(tunnukset[i]).value;
+                           vastaus.push('{"answerValue": "'+ vastaus + '", "questionId": "' + questionId +  '"}'); 
+                       }
+                       alert("ciao")
+                       if (tyyppi=="radio") {
+                    var radios = document.getElementsByName(tunnukset[i]);
+                    for (var x = 0, length = radios.length; x < length; x++){
+                    if (radios[x].checked){ 
+               vastaus=radios[x].value;
+             }
+        }
+                         
 
-             
+                       }
+                       vastaukset.push("]");
+               
+
+           var jsonData = {"kymysId":tunnukset[i], "vastaus":vastaus};
+              
+               /* stringify-metodia tarvitaan vain alert-funktiota varten. */
+var myJSON = JSON.stringify(jsonData);
+                alert("hola")
+               
+   $.ajax({
+    url: 'https://testidataothu1.herokuapp.com/submitAnswerList',
+    type: 'POST',
+    dataType: 'application/json',
+    contentType: "application/json",
+    data: myJSON, 
+    success: function() { alert('POST completed. Data:' + myJSON)},
+        error: function(xhr, status, error) {
+  alert(xhr.responseText +" "+ status +" "+ error);
+ }
+});
+                   }
+               }
              </script>
     
         
         
-<form>
+
              
             
      
@@ -112,9 +170,7 @@ var items = [];
               <input type="radio" name="kysymys11" id="vastaus28" value="ei"><label for="vastaus28">Ei</label><br>
               <input type="radio" name="kysymys11" id="vastaus29" value="kyllä"><label for="vastaus29">Kyllä, mitä? <input type="text" name="mita" placeholder=""></label><br><br> -->
     
-    <button>Lähetä&nbsp;&nbsp;<i class="fas fa-arrow-right"></i></button>
-    </form>
-        </div>
+   
 
   </body>  
 
