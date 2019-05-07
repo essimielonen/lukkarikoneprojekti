@@ -1,177 +1,109 @@
 <!doctype html>
 <html lang="">
-<head>
-
-    	<!-- Global site tag (gtag.js) - Google Analytics -->
-<script async src="https://www.googletagmanager.com/gtag/js?id=UA-138889186-1"></script>
-<script>
-  window.dataLayer = window.dataLayer || [];
-  function gtag(){dataLayer.push(arguments);}
-  gtag('js', new Date());
-  gtag('config', 'UA-138889186-1');
-</script>
-
-    
-    
-    <meta charset="utf-8">
-    <meta http-equiv="x-ua-compatible" content="ie=edge">
-		<title>Kysely Lukkarikoneesta</title>
+	<head>
+		<meta charset="utf-8">
+		<meta http-equiv="x-ua-compatible" content="ie=edge">
+		<title>Paras matkaopas</title>
 		<meta name="description" content="">
 		<meta name="viewport" content="width=device-width, initial-scale=1">
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
-  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
-  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
-  <link rel="stylesheet" href="tyyli.css">
-    <link href="https://fonts.googleapis.com/css?family=Montserrat:900,800" rel="stylesheet">
-    <link href="https://fonts.googleapis.com/css?family=Poppins" rel="stylesheet">
-    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.1/css/all.css" integrity="sha384-50oBUHEmvpQ+1lW4y57PTFmhCaXp0ML5d60M1M7uH2+nqUivzIebhndOJK28anvf" crossorigin="anonymous">
-    
-    
-    </head>    
-<body>
-    <div class="container">
-<h1>Kysely</h1>
-<h2>Haaga-Helian Lukkarikoneesta</h2>
-<form>
-        <div class="col-lg-6" id="formi"></div>
-    
-     <button onclick="laheta()">Lähetä&nbsp;&nbsp;<i class="fas fa-arrow-right"></i></button>
-    </form>
+
+		<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+        
+        <link href="https://fonts.googleapis.com/css?family=Libre+Barcode+39+Text" rel="stylesheet">
+        <link href="https://fonts.googleapis.com/css?family=Libre+Franklin" rel="stylesheet">
+        
+        <link rel="stylesheet" href="css/jquery.bxslider.css">
+        
+        <link rel="stylesheet" href="css/lightbox.css">
+
+        
+		<!-- GRT Youtube Plugin CSS -->
+		<link rel="stylesheet" href="css/grt-responsive-menu.css">
+        
+         <style>
+            #galleria img {height:100px;
+                            box-shadow: 8px 8px 8px grey;
+                           margin:5px;}
+            #galleria {text-align:center;
+                       margin-bottom: 300px;}
+             
+
+        </style>
+
+
+	</head>
+	<body>
+		<header>
+			<div class="menu-container">
+				<div class="row no-margin">
+					<div class="col-sm-4 col-xs-6 no-padding">
+						<a href="#"  class="grt-logo"><h3>Paras matkaopas</h3></a>
+					</div>
+					<div class="col-sm-8 col-xs-6 no-padding">
+						<nav>
+                            <button class="grt-mobile-button">
+                            <div class="line1"></div>
+                            <div class="line2"></div>
+                            <div class="line3"></div>
+                            </button>
+                            <ul class="grt-menu">
+                                <li class="active"><a href="">etusivu</a></li>
+                                <li><a href="#galleria">galleria</a></li>
+                                <li><a href="matkat.html">matkat</a></li>
+                                <li><a href="tyot.html">työt</a></li>
+                                <li class="grt-dropdown"><a>Tampere</a>
+                                    <ul class="grt-dropdown-list">
+                                        <li><a href="matkat2.html">Matkustajat</a></li>
+                                        <li><a href="tapahtumat.html">Tapahtumat</a></li>
+                                        <li><a href="saa.html">Sää</a></li>
+                                    </ul>
+                                </li>
+                                <li><a href="">More Links</a></li>
+                            </ul>
+                        </nav>
+                        
+                        
+
+                               
+					</div>
+             
+				</div>
+			</div>
+		</header>
+            
+                                
+<!--           slideri             -->
+                        <div class="container-fluid" style="margin-top: 60px;">
+            <div class="slider">               
+    	  <div> <img src="images/palmtrees.jpg" alt="Palmuja"></div>
+   	  <div><img src="images/beach.jpg" alt="Los Angeles"></div>
+        <div><img src="images/hollywoodsign.jpg" alt="Hollywood"></div>
+        <div><img src="images/city.jpg" alt="Auringonlasku"></div>
+                            
+  	</div>  
+       </div>                  
+                        
+<!--              toinen galleria          -->
+        <div class="container-fluid" id="galleria" style="margin-top: 60px;">
+        <a href="images/palmtrees.jpg" data-lightbox="roadtrip" data-title="Ihanat palmut"><img src="images/palmtrees.jpg" class="img-thumbnail"></a>                
+        <a href="images/hollywood.jpg" data-lightbox="roadtrip" data-title="Katu Los Angelesissa"><img src="images/hollywood.jpg" class="img-thumbnail"></a>
+        <a href="images/hollywoodsign.jpg" data-lightbox="roadtrip" data-title="Hollywood-kyltti rinteellä"><img src="images/hollywoodsign.jpg" class="img-thumbnail"></a>  
+        <a href="images/city.jpg" data-lightbox="roadtrip" data-title="Lenkkeilyä auringonlaskussa"><img src="images/city.jpg" class="img-thumbnail"></a>
+                           
         </div>    
-           <script>
-               
-               
-var tunnukset = [];
 
-    $.getJSON("https://testidataothu1.herokuapp.com/questions", function(data){
-        var items = [];
-
-        $.each(data, function(key, d){
-           items.push("<br>" + d.title + "<br>");
-            
-            if (d.type =="avoin") {
-            items.push("<textarea id=" + d.questionId + "></textarea><br>")
-            
-            }
-            
-            if (d.type =="monivalinta") {
-                for (i = 0; i < d.answerOptions.length; i++) { 
-                    items.push("<input type=radio id="+ d.questionId + " name="+d.questionId +" value="+ d.answerOptions[i].value +">  "+d.answerOptions[i].value +"<br>" );
-	 }}
-
-            
-          tunnukset.push(d.questionId);  
-        });
-         $("#formi").append(items.join(" "));
-        });
-               
-               function laheta(){
-                   var vastaukset = [];
-                   vastaukset.push("[");
-                   for (i = 0; i < tunnukset.length; i++) {
-                       tyyppi=document.getElementById(tunnukset[i]).type;
-                       if (tyyppi=="textarea") {
-                       vastaus=document.getElementById(tunnukset[i]).value;
-                           vastaus.push('{"answerValue": "'+ vastaus + '", "questionId": "' + questionId +  '"}'); 
-                       }
-                       alert("ciao")
-                       if (tyyppi=="radio") {
-                    var radios = document.getElementsByName(tunnukset[i]);
-                    for (var x = 0, length = radios.length; x < length; x++){
-                    if (radios[x].checked){ 
-               vastaus=radios[x].value;
-             }
-        }
-                         
-
-                       }
-                       vastaukset.push("]");
-               
-
-           var jsonData = {"kymysId":tunnukset[i], "vastaus":vastaus};
-              
-               /* stringify-metodia tarvitaan vain alert-funktiota varten. */
-var myJSON = JSON.stringify(jsonData);
-                alert("hola")
-               
-   $.ajax({
-    url: 'https://testidataothu1.herokuapp.com/submitAnswerList',
-    type: 'POST',
-    dataType: 'application/json',
-    contentType: "application/json",
-    data: myJSON, 
-    success: function() { alert('POST completed. Data:' + myJSON)},
-        error: function(xhr, status, error) {
-  alert(xhr.responseText +" "+ status +" "+ error);
- }
-});
-                   }
-               }
-             </script>
-    
+		<!-- Jquery -->
+		<script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
+        <script src="js/grt-responsive-menu.js"></script>
+        <script src="js/jquery.bxslider.js"></script>
         
-        
+        <script>
+  	  $(document).ready(function(){
+  	    $('.slider').bxSlider();
+  	  });
+	</script>
 
-             
-            
-     
-    <!--    <p>1. Minä vuonna aloitit opintosi Haaga-Heliassa?</p>
-        <input type="radio" name="kysymys1" id="vastaus1" value="2019"><label for="vastaus1">2019</label><br>
-        <input type="radio" name="kysymys1" id="vastaus2" value="2018"><label for="vastaus2">2018</label><br>
-        <input type="radio" name="kysymys1" id="vastaus3" value="aiemmin"><label for="vastaus3">Aiemmin</label><br><br>
-             
-        <p>2. Oletko käyttänyt Lukkarikonetta?</p>
-        <input type="radio" name="kysymys2" id="vastaus4" value="kylla"><label for="vastaus5">Kyllä</label><br>
-        <input type="radio" name="kysymys2" id="vastaus5" value="ei"><label for="vastaus5">En</label><br><br>
-
-             
-        <p>3. Oletko kokenut Lukkarikoneen toimivaksi?</p>
-        <input type="radio" name="kysymys3" id="vastaus6" value="kylla"><label for="vastaus6">Kyllä</label><br>
-        <input type="radio" name="kysymys3" id="vastaus7" value="ei"><label for="vastaus7">En</label><br>
-         <input type="radio" name="kysymys3" id="vastaus8" value="enosaasanoa"><label for="vastaus8">En osaa sanoa</label><br><br>
-         
-        <label for="vastaus8">4. Mitä hyvää Lukkarikoneessa mielestäsi on?</label><br>
-             <textarea name="kysymys4" id="vastaus8"></textarea><br><br>
-             
-        <label for="vastaus9">5. Onko sinulla parannusehdotuksia Lukkarikoneen toimintaan?</label><br>
-             <textarea name="kysymys5" id="vastaus9"></textarea><br><br>
-             
-             <p>6. Mitä näistä ominaisuuksista olet käyttänyt? (Voit valita useita)</p>
-            <input type="checkbox" name="kysymys6" id="vastaus10" value="vastaus10"><label for="vastaus10"> Lukujärjestyksen tallentaminen</label><br>
-            <input type="checkbox" name="kysymys6" id="vastaus11" value="vastaus11"><label for="vastaus11"> Lukujärjestyksen kasaaminen</label><br>
-             <input type="checkbox" name="kysymys6" id="vastaus12" value="vastaus12"><label for="vastaus12"> Kurssin hakeminen kurssin nimellä</label><br>
-             <input type="checkbox" name="kysymys6" id="vastaus30" value="vastaus30"><label for="vastaus30"> Kurssin hakeminen kurssitunnuksella</label><br>
-             <input type="checkbox" name="kysymys6" id="vastaus13" value="vastaus13"><label for="vastaus13"> Kurssien hakeminen oman lukujärjestyksen tyhjiin kohtiin</label><br>
-             <input type="checkbox" name="kysymys6" id="vastaus14" value="vastaus14"><label for="vastaus14"> Etsinyt valmiita lukujärjestyksiä ryhmätunnuksella</label><br><br>
-             
-             <p>7. Millä laitteella yleensä käytät Lukkarikonetta</p>
-            <input type="radio" name="kysymys7" id="vastaus15" value="laite1"><label for="vastaus15"> Tietokoneella</label><br>
-            <input type="radio" name="kysymys7" id="vastaus16" value="laite2"><label for="vastaus16"> Puhelin/Tabletti</label><br>
-             <input type="radio" name="kysymys7" id="vastaus17" value="laite33"><label for="vastaus17"> Molemmilla</label><br>  <br>
-             
-             <p>8. Käyttäisitkö Lukkarikonetta enemmän jos siitä olisi mobiiliversio tai sovellus?</p>
-              <input type="radio" name="kysymys8" id="vastaus18" value="kylla"><label for="vastaus18">Kyllä</label><br>
-              <input type="radio" name="kysymys8" id="vastaus19" value="en"><label for="vastaus19">En</label><br>
-              <input type="radio" name="kysymys8" id="vastaus20" value="enosaasanoa"><label for="vastaus20">En osaa sanoa</label><br><br>
-             
-             <p>9. Kuinka usein tarkastelet lukujärjestystäsi Lukkarikoneesta?</p>
-              <input type="radio" name="kysymys9" id="vastaus21" value="paivittain"><label for="vastaus21">Päivittäin</label><br>
-              <input type="radio" name="kysymys9" id="vastaus22" value="viikoittain"><label for="vastaus22">Viikoittain</label><br>
-              <input type="radio" name="kysymys9" id="vastaus23" value="kuukausittain"><label for="vastaus23">Kuukausittain</label><br>
-              <input type="radio" name="kysymys9" id="vastaus24" value="harvemmin"><label for="vastaus24">Harvemmin</label><br>
-              <input type="radio" name="kysymys9" id="vastaus25" value="enkoskaan"><label for="vastaus25">En koskaan</label><br><br>
-             
-             <p>10. Haluaisitko itse vaikuttaa Lukkarikoneen ulkoasuun?</p>
-              <input type="radio" name="kysymys10" id="vastaus26" value="kylla"><label for="vastaus26">Kyllä</label><br>
-              <input type="radio" name="kysymys10" id="vastaus27" value="en"><label for="vastaus27">En</label><br><br>
-             
-             <p>11. Onko sinulla ollut ongelmia Lukkarikoneen käytössä?</p>
-              <input type="radio" name="kysymys11" id="vastaus28" value="ei"><label for="vastaus28">Ei</label><br>
-              <input type="radio" name="kysymys11" id="vastaus29" value="kyllä"><label for="vastaus29">Kyllä, mitä? <input type="text" name="mita" placeholder=""></label><br><br> -->
-    
-   
-
-  </body>  
-
-    </html>
+        <script src="js/lightbox.min.js"></script>
+		
+	</body>
+</html>
