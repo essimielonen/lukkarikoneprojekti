@@ -1,109 +1,134 @@
 <!doctype html>
 <html lang="">
-	<head>
-		<meta charset="utf-8">
-		<meta http-equiv="x-ua-compatible" content="ie=edge">
-		<title>Paras matkaopas</title>
+<head>
+
+    	<!-- Global site tag (gtag.js) - Google Analytics -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=UA-138889186-1"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+  gtag('config', 'UA-138889186-1');
+</script>
+
+    
+    
+    <meta charset="utf-8">
+    <meta http-equiv="x-ua-compatible" content="ie=edge">
+		<title>Kysely Lukkarikoneesta</title>
 		<meta name="description" content="">
 		<meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
+  <link rel="stylesheet" href="tyyli.css">
+    <link href="https://fonts.googleapis.com/css?family=Montserrat:900,800" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Poppins" rel="stylesheet">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.1/css/all.css" integrity="sha384-50oBUHEmvpQ+1lW4y57PTFmhCaXp0ML5d60M1M7uH2+nqUivzIebhndOJK28anvf" crossorigin="anonymous">
+    
+    
+    </head>    
+<body>
+    <div class="container">
+<h1>Kysely</h1>
+<h2>Haaga-Helian Lukkarikoneesta</h2>
 
-		<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
-        
-        <link href="https://fonts.googleapis.com/css?family=Libre+Barcode+39+Text" rel="stylesheet">
-        <link href="https://fonts.googleapis.com/css?family=Libre+Franklin" rel="stylesheet">
-        
-        <link rel="stylesheet" href="css/jquery.bxslider.css">
-        
-        <link rel="stylesheet" href="css/lightbox.css">
-
-        
-		<!-- GRT Youtube Plugin CSS -->
-		<link rel="stylesheet" href="css/grt-responsive-menu.css">
-        
-         <style>
-            #galleria img {height:100px;
-                            box-shadow: 8px 8px 8px grey;
-                           margin:5px;}
-            #galleria {text-align:center;
-                       margin-bottom: 300px;}
-             
-
-        </style>
-
-
-	</head>
-	<body>
-		<header>
-			<div class="menu-container">
-				<div class="row no-margin">
-					<div class="col-sm-4 col-xs-6 no-padding">
-						<a href="#"  class="grt-logo"><h3>Paras matkaopas</h3></a>
-					</div>
-					<div class="col-sm-8 col-xs-6 no-padding">
-						<nav>
-                            <button class="grt-mobile-button">
-                            <div class="line1"></div>
-                            <div class="line2"></div>
-                            <div class="line3"></div>
-                            </button>
-                            <ul class="grt-menu">
-                                <li class="active"><a href="">etusivu</a></li>
-                                <li><a href="#galleria">galleria</a></li>
-                                <li><a href="matkat.html">matkat</a></li>
-                                <li><a href="tyot.html">työt</a></li>
-                                <li class="grt-dropdown"><a>Tampere</a>
-                                    <ul class="grt-dropdown-list">
-                                        <li><a href="matkat2.html">Matkustajat</a></li>
-                                        <li><a href="tapahtumat.html">Tapahtumat</a></li>
-                                        <li><a href="saa.html">Sää</a></li>
-                                    </ul>
-                                </li>
-                                <li><a href="">More Links</a></li>
-                            </ul>
-                        </nav>
-                        
-                        
-
-                               
-					</div>
-             
-				</div>
-			</div>
-		</header>
-            
-                                
-<!--           slideri             -->
-                        <div class="container-fluid" style="margin-top: 60px;">
-            <div class="slider">               
-    	  <div> <img src="images/palmtrees.jpg" alt="Palmuja"></div>
-   	  <div><img src="images/beach.jpg" alt="Los Angeles"></div>
-        <div><img src="images/hollywoodsign.jpg" alt="Hollywood"></div>
-        <div><img src="images/city.jpg" alt="Auringonlasku"></div>
-                            
-  	</div>  
-       </div>                  
-                        
-<!--              toinen galleria          -->
-        <div class="container-fluid" id="galleria" style="margin-top: 60px;">
-        <a href="images/palmtrees.jpg" data-lightbox="roadtrip" data-title="Ihanat palmut"><img src="images/palmtrees.jpg" class="img-thumbnail"></a>                
-        <a href="images/hollywood.jpg" data-lightbox="roadtrip" data-title="Katu Los Angelesissa"><img src="images/hollywood.jpg" class="img-thumbnail"></a>
-        <a href="images/hollywoodsign.jpg" data-lightbox="roadtrip" data-title="Hollywood-kyltti rinteellä"><img src="images/hollywoodsign.jpg" class="img-thumbnail"></a>  
-        <a href="images/city.jpg" data-lightbox="roadtrip" data-title="Lenkkeilyä auringonlaskussa"><img src="images/city.jpg" class="img-thumbnail"></a>
-                           
+        <div class="col-lg-6" id="formi"></div>
+    
+     <button onclick="laheta()">Lähetä&nbsp;&nbsp;<i class="fas fa-arrow-right"></i></button>
+    
         </div>    
+           <script>
+               
+               
+var tunnukset = [];
 
-		<!-- Jquery -->
-		<script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
-        <script src="js/grt-responsive-menu.js"></script>
-        <script src="js/jquery.bxslider.js"></script>
-        
-        <script>
-  	  $(document).ready(function(){
-  	    $('.slider').bxSlider();
-  	  });
-	</script>
+    $.getJSON("https://executeorder66.herokuapp.com/questions", function(data){
+        var items = [];
 
-        <script src="js/lightbox.min.js"></script>
-		
-	</body>
-</html>
+        $.each(data, function(key, d){
+           items.push("<br>" + d.title + "<br>");
+            
+            if (d.type =="avoin") {
+            items.push("<textarea id=" + d.questionId + "></textarea><br>")
+            
+            }
+            
+            if (d.type =="monivalinta") {
+                for (i = 0; i < d.answerOptions.length; i++) { 
+                    items.push("<input type=radio id="+ d.questionId + " name="+d.questionId +" value="+ d.answerOptions[i].value +">  "+d.answerOptions[i].value +"<br>" );
+	 }}
+
+            
+          tunnukset.push(d.questionId);  
+        });
+         $("#formi").append(items.join(" "));
+        });
+               
+               function laheta(){
+                   var vastaukset = [];
+                   vastaukset.push("[");
+              
+                   for (i = 0; i < tunnukset.length; i++) {
+                       tyyppi=document.getElementById(tunnukset[i]).type;
+                       
+                       
+                       if (tyyppi=="textarea") {
+                       vastaus=document.getElementById(tunnukset[i]).value;
+                           vastaukset.push('{"answerValue": "'+ vastaus + '", "questionId": ' + tunnukset[i] +  '}'); 
+                       }
+                     
+                       
+                       
+                       
+                       if (tyyppi=="radio") {
+                    var radios = document.getElementsByName(tunnukset[i]);
+                    for (var x = 0, length = radios.length; x < length; x++){
+                    if (radios[x].checked){ 
+               vastaus=radios[x].value;
+                         vastaukset.push('{"answerValue": "'+ vastaus + '", "questionId": ' + tunnukset[i] +  '}'); 
+             }
+        }
+                       }
+                       
+                       if (i < (tunnukset.length-1)) {
+                        
+                           vastaukset.push(",")
+                       }
+
+                       } //1. for-lause kiinni
+                   
+                   
+                       vastaukset.push("]");
+               
+                       alert(vastaukset.join(""));
+           var jsonData = vastaukset.join("");
+              
+               /* stringify-metodia tarvitaan vain alert-funktiota varten. */
+var myJSON = JSON.stringify(jsonData);
+                alert(myJSON);
+              // window.location = "http://myy.haaga-helia.fi/~a1800564/Digiprojekti/kiitos.html";
+                   
+   $.ajax({
+    url: 'https://executeorder66.herokuapp.com/api/submitAnswers',
+    type: 'POST',
+    dataType: 'application/json',
+    contentType: "application/json",
+    data: myJSON, 
+    success: function() { alert('POST completed. Data:' + myJSON)},
+        error: function(xhr, status, error) {
+  console.log(xhr.responseText +" "+ status +" "+ error);
+ }
+});
+                 
+               }
+               
+         
+             </script>
+    
+   
+
+  </body>  
+
+    </html>
