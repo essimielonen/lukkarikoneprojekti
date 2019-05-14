@@ -1,3 +1,4 @@
+
 <!doctype html>
 <html lang="">
 <head>
@@ -33,8 +34,7 @@
     <div class="container">
 <h1>Kysely</h1>
 <h2>Haaga-Helian Lukkarikoneesta</h2>
-
-        <div class="col-lg-6" id="formi"></div>
+        <div class="col-lg-12" id="formi"></div>
     
      <button onclick="laheta()">Lähetä&nbsp;&nbsp;<i class="fas fa-arrow-right"></i></button>
     
@@ -44,20 +44,22 @@
                
 var tunnukset = [];
 
-    $.getJSON("https://executeorder66.herokuapp.com/questions", function(data){
+    $.getJSON("https://intense-brushlands-60859.herokuapp.com/questions", function(data){
         var items = [];
 
         $.each(data, function(key, d){
            items.push("<br>" + d.title + "<br>");
+
             
             if (d.type =="avoin") {
             items.push("<textarea id=" + d.questionId + "></textarea><br>")
+            
             
             }
             
             if (d.type =="monivalinta") {
                 for (i = 0; i < d.answerOptions.length; i++) { 
-                    items.push("<input type=radio id="+ d.questionId + " name="+d.questionId +" value="+ d.answerOptions[i].value +">  "+d.answerOptions[i].value +"<br>" );
+                    items.push("<input type=radio id="+ d.questionId + " name="+d.questionId +" value="+ d.answerOptions[i].value +"> "+d.answerOptions[i].value +"<br>" );
 	 }}
 
             
@@ -66,52 +68,46 @@ var tunnukset = [];
          $("#formi").append(items.join(" "));
         });
                
-               function laheta(){
-                   var vastaukset = [];
-                   vastaukset.push("[");
+               function laheta() {
+                var vastaukset = [];
+                 
               
                    for (i = 0; i < tunnukset.length; i++) {
                        tyyppi=document.getElementById(tunnukset[i]).type;
                        
+                
                        
                        if (tyyppi=="textarea") {
                        vastaus=document.getElementById(tunnukset[i]).value;
-                           vastaukset.push('{"answerValue": "'+ vastaus + '", "questionId": ' + tunnukset[i] +  '}'); 
+                       
+                       
+                           vastaukset.push({answerValue:  vastaus, questionId: tunnukset[i]  }); 
                        }
                      
-                       
-                       
                        
                        if (tyyppi=="radio") {
                     var radios = document.getElementsByName(tunnukset[i]);
                     for (var x = 0, length = radios.length; x < length; x++){
                     if (radios[x].checked){ 
-               vastaus=radios[x].value;
-                         vastaukset.push('{"answerValue": "'+ vastaus + '", "questionId": ' + tunnukset[i] +  '}'); 
+                        vastaus=radios[x].value;
+                        
+                         vastaukset.push({answerValue: vastaus, questionId: tunnukset[i] }); 
+                         console.log(vastaukset);
+                         
              }
         }
                        }
                        
-                       if (i < (tunnukset.length-1)) {
-                        
-                           vastaukset.push(",")
-                       }
-
+                   
                        } //1. for-lause kiinni
                    
                    
-                       vastaukset.push("]");
-               
-                       alert(vastaukset.join(""));
-           var jsonData = vastaukset.join("");
-              
                /* stringify-metodia tarvitaan vain alert-funktiota varten. */
-var myJSON = JSON.stringify(jsonData);
-                alert(myJSON);
-              // window.location = "http://myy.haaga-helia.fi/~a1800564/Digiprojekti/kiitos.html";
-                   
+var myJSON = JSON.stringify(vastaukset);
+         alert("Kiitos! Vastauksesi on tallentunut järjestelmään! Paina OK!")
+               
    $.ajax({
-    url: 'https://executeorder66.herokuapp.com/api/submitAnswers',
+    url: 'https://intense-brushlands-60859.herokuapp.com/api/submitAnswers',
     type: 'POST',
     dataType: 'application/json',
     contentType: "application/json",
@@ -120,14 +116,14 @@ var myJSON = JSON.stringify(jsonData);
         error: function(xhr, status, error) {
   console.log(xhr.responseText +" "+ status +" "+ error);
  }
+        
 });
-                 
-               }
                
+                 //  window.location = "http://myy.haaga-helia.fi/~a1800564/Digiprojekti/kiitos.html";    
+               }
+            
          
-             </script>
-    
-   
+	</script>
 
   </body>  
 
