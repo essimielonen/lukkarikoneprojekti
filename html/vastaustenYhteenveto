@@ -1,0 +1,74 @@
+<!doctype html>
+<html lang="">
+<head>
+
+    	<!-- Global site tag (gtag.js) - Google Analytics -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=UA-138889186-1"></script>
+    
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+  gtag('config', 'UA-138889186-1');
+</script>
+
+    
+    
+    <meta charset="utf-8">
+    <meta http-equiv="x-ua-compatible" content="ie=edge">
+		<title>Kyselyn vastaukset</title>
+		<meta name="description" content="">
+		<meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
+  <link rel="stylesheet" href="tyyli.css">
+    <link href="https://fonts.googleapis.com/css?family=Montserrat:900,800" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Poppins" rel="stylesheet">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.1/css/all.css" integrity="sha384-50oBUHEmvpQ+1lW4y57PTFmhCaXp0ML5d60M1M7uH2+nqUivzIebhndOJK28anvf" crossorigin="anonymous">
+    
+    
+    </head> 
+    
+<body>
+    
+    <div class="container">
+        
+<h1>Vastaukset</h1>
+        <br>
+
+<ul id=vastaukset>
+        </ul>
+        
+        </div>
+
+		<!-- Jquery -->
+		<script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
+        <script src="js/grt-responsive-menu.js"></script>
+        <script src="js/jquery.bxslider.js"></script>
+        <script src="js/lightbox.min.js"></script>
+        
+        <script>
+$.getJSON("https://intense-brushlands-60859.herokuapp.com/answers", function(data){
+    var items= [];
+    
+$.each(data, function(key, arvo){
+    
+   // items.push("<p>"+"Kysymyksen tyyppi: "+arvo.question.type+ ". Kysymys: " +arvo.question.title+ " Vastaus: " + arvo.answerValue+"</p>");
+    
+    if (arvo.question.type =="avoin") {
+            items.push("<p>"+"<strong>Kysymys:</strong> " +arvo.question.title+ " <strong>Vastaus:</strong> " + arvo.answerValue+"</p>");
+    }
+    
+    
+});
+    $("#vastaukset").append(items.join(""));
+    
+})   
+</script>  
+
+    
+  </body>  
+
+    </html>
