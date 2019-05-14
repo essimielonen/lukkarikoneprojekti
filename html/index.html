@@ -104,7 +104,12 @@ var tunnukset = [];
                    
                /* stringify-metodia tarvitaan vain alert-funktiota varten. */
 var myJSON = JSON.stringify(vastaukset);
-         alert("Kiitos! Vastauksesi on tallentunut järjestelmään! Paina OK!")
+        // alert("Kiitos! Vastauksesi on tallentunut järjestelmään! Paina OK!")
+        setTimeout(
+        function() {
+            window.location = "http://myy.haaga-helia.fi/~a1800564/Digiprojekti/kiitos.html";
+        },1000);   
+                   
                
    $.ajax({
     url: 'https://intense-brushlands-60859.herokuapp.com/api/submitAnswers',
@@ -118,12 +123,11 @@ var myJSON = JSON.stringify(vastaukset);
  }
         
 });
-               
-                 //  window.location = "http://myy.haaga-helia.fi/~a1800564/Digiprojekti/kiitos.html";    
+                  
                }
             
          
-	</script>
+             </script>
 
   </body>  
 
